@@ -226,6 +226,8 @@ ggplot(plot_data, aes(x = x_px, y = y_px)) +
 da.combined@meta.data[rownames(plot_data),c('x_px','y_px')]<-plot_data[,c('x_px','y_px')]
 da.combined@images$S3000_50cs3@image<-img_rot
 
+da_all<-readRDS(file.path(wkdir,"test3.Integrate_L123_region.rds"))
+da_all
 #S3000
 img<-da_all@images[['S3000']]@image
 img_w <- ncol(img)
