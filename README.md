@@ -67,7 +67,7 @@ R -e "library(Seurat); packageVersion('Seurat')"
 Steller processes spatial lineages in three sequential modules:
 
 ```
-[ Input Data ] ---> ( 1. Preprocessing ) ---> ( 2. Clonal Integration ) ---> ( 3. Spatial Visualization )
+[ 1. CS probe selection ] ---> ( 2. CloneBC whitelist generation ) ---> ( 3. Brain region definition ) ---> ( 4. CloneBC extraction & CloneCalling ) ---> ( 5. Cell type annotation ) ---> ( 6. Spatial lineage fate analysis & visualization )
 
 ```
 
