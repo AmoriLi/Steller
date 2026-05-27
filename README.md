@@ -2,7 +2,7 @@
 
 ---
 
-## 🌟 Key Features
+## 🌟 Highlights
 
 - **A novel engineered spatial lineage-tracing chip:**<br> Employing a novel CS3-optimized probe design on 2.5 um spatial transcriptomic chips, we achieved substantial increase both the number and diversity of CloneBC recovery rates compared to traditional low-resolution Visium platform as well as conventional poly(T) probe at spatial single-cell resolution. It is compatible with existing commercial and academic spatial transcriptomics platform and scalable to the spatial lineage study for other biological programs.
 
