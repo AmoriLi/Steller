@@ -4,12 +4,12 @@
 
 ## 🌟 Key Features
 
-- **A novel engineered spatial lineage-tracing chip:** Employing a novel CS3-optimized probe design on 2.5 um spatial transcriptomic chips, we achieved substantial increase both the number and diversity of CloneBC recovery rates compared to traditional low-resolution Visium platform as well as conventional poly(T) probe at spatial single-cell resolution. It is compatible with existing commercial and academic spatial transcriptomics platform and scalable to the spatial lineage study for other biological programs.
+- **A novel engineered spatial lineage-tracing chip:**<br> Employing a novel CS3-optimized probe design on 2.5 um spatial transcriptomic chips, we achieved substantial increase both the number and diversity of CloneBC recovery rates compared to traditional low-resolution Visium platform as well as conventional poly(T) probe at spatial single-cell resolution. It is compatible with existing commercial and academic spatial transcriptomics platform and scalable to the spatial lineage study for other biological programs.
 
-- **High-resolution mapping of diverse spatial lineage patterns in mouse forebrain:** Leveraging Steller platform, we achieved, for the first time, single-cell-resolution tracking of neural progenitor cell (NPC) progeny across diverse brain regions. Beyond capturing the classic radially arranged cortical columns, we revealed several previously uncharacterized or complex spatial organizations, including:
-•	Hippocampus: Identification of horizontally aligned neuronal clusters within the CA3 and dentate gyrus (DG);
-•	Striatum: Observation of distinct, spatially clustered striatal spiny projection neuron (SPN) subtypes;
-•	Thalamus: Discovery of dorso-ventrally partitioned territories of thalamic glutamatergic neurons. 
+- **High-resolution mapping of diverse spatial lineage patterns in mouse forebrain:**<br> Leveraging Steller platform, we achieved, for the first time, single-cell-resolution tracking of neural progenitor cell (NPC) progeny across diverse brain regions. Beyond capturing the classic radially arranged cortical columns, we revealed several previously uncharacterized or complex spatial organizations, including:
+<br>•	Hippocampus: Identification of horizontally aligned neuronal clusters within the CA3 and dentate gyrus (DG);
+<br>•	Striatum: Observation of distinct, spatially clustered striatal spiny projection neuron (SPN) subtypes;
+<br>•	Thalamus: Discovery of dorso-ventrally partitioned territories of thalamic glutamatergic neurons. 
 
 ---
 
