@@ -1,20 +1,17 @@
 ```markdown
-# Steller: Integrating Spatial Transcriptomics and Lineage Tracing to Map Development
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Python Version](https://img.shields.io/badge/python-3.8%20%7C%203.9-blue.svg)](https://www.python.org/)
-[![R Version](https://img.shields.io/badge/R-%E2%89%A5%204.0-blue.svg)](https://www.r-project.org/)
-
-**Steller** a platform utilizing high-diversity barcodes at sparse tagging densities to guarantee unique clonal identification. By integrating a specialized, probe-modified spatial transcriptomic workflow, Steller enhances lineage signature readout at single cell resolution without compromising transcriptomic analysis. .
+**Steller** a platform utilizing high-diversity barcodes at sparse tagging densities to guarantee unique clonal identification. By integrating a specialized, probe-modified spatial transcriptomic workflow, Steller enhances lineage signature readout at single cell resolution without compromising transcriptomic analysis.
 
 ---
 
-## Key Features
+## Highlights
 
-- **Multi-Modal Integration:** Seamlessly aligns single-cell/spatial transcriptomic data (`Seurat` / `Scanpy` objects) with lineage barcodes.
-- **Clonal Trajectory Analysis:** Tracks clone dissemination and lineage commitment across spatial domains.
-- **Advanced Visualization:** Implements publication-ready plotting modules featuring sophisticated, low-saturation color palettes (e.g., custom Morandi schemes) tailored for complex multi-clonal visualization.
-- **Scalable Architecture:** Optimized for high-performance computing environments (multi-threaded, memory-efficient processing for large-scale datasets).
+- A novel engineered spatial lineage-tracing chip: Employing a novel CS3-optimized probe design on 2.5 um spatial transcriptomic chips, we achieved substantial increase both the number and diversity of CloneBC recovery rates compared to traditional low-resolution Visium platform as well as conventional poly(T) probe at spatial single-cell resolution. It is compatible with existing commercial and academic spatial transcriptomics platform and scalable to the spatial lineage study for other biological programs.
+
+- High-resolution mapping of diverse spatial lineage patterns in mouse forebrain: Leveraging Steller platform, we achieved, for the first time, single-cell-resolution tracking of neural progenitor cell (NPC) progeny across diverse brain regions. Beyond capturing the classic radially arranged cortical columns, we revealed several previously uncharacterized or complex spatial organizations, including:
+•	Hippocampus: Identification of horizontally aligned neuronal clusters within the CA3 and dentate gyrus (DG);
+•	Striatum: Observation of distinct, spatially clustered striatal spiny projection neuron (SPN) subtypes;
+•	Thalamus: Discovery of dorso-ventrally partitioned territories of thalamic glutamatergic neurons. 
 
 ---
 
@@ -22,15 +19,15 @@
 
 ```text
 Steller/
-├── data/                  # Example datasets and downsampled demo data
-├── envs/                  # Conda environment configuration files
-├── notebooks/             # Step-by-step tutorial walkthroughs (Jupyter/Rmd)
-├── src/                   # Core source code modules
+├── CS_design/             # CloneBC capture sequence (CS) design
+├── scST/                  # Spatial transcriptomics with cell segmentation based on BMKMANU slide
+├── snST/                  # Single nucleus spatial transcriptomics based on SeekSpace slide
+├── whitelist/             # Whitelist of CloneBC plasmid library used in the study
 │   ├── preprocessing/     # Data filtering, QC, and lineage barcode extraction
 │   ├── integration/       # Alignment algorithms for transcriptomics and clones
 │   └── visualization/     # Custom plotting engines for spatial & UMAP plots
-├── scripts/               # Command-line interfaces and server submission scripts
-├── LICENSE
+├── Helper.R               # Source code using R
+├── utils.py               # Source code using python
 └── README.md
 
 ```
