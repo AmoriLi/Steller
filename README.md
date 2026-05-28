@@ -118,24 +118,13 @@ Check out the interactive guides in the `notebooks/` directory for full examples
 
 ## Citation
 
-If you use **Steller** in your research or find its workflows helpful, please cite our pre-print/manuscript:
-
-```bibtex
-@article{li2026steller,
-  title={Steller: Integrating spatial transcriptomics with lineage tracing to map mouse brain development},
-  author={Li, Amori and [Co-authors]},
-  journal={Bioinformatics / Nature Methods / Cell (Update as appropriate)},
-  year={2026},
-  publisher={[Publisher Name]}
-}
-
-```
+If you use **Steller** in your research or find its workflows helpful, please cite our pre-print/manuscript.
 
 ---
 
 ## Contact & Support
 
-For questions, bug reports, or feature requests, please open an Issue on the [GitHub Issues page](https://www.google.com/search?q=https://github.com/AmoriLi/Steller/issues) or reach out directly to the maintainer at **[Your Email Address]**.
+For questions, bug reports, or feature requests, please open an Issue on the [GitHub Issues page](https://www.google.com/search?q=https://github.com/AmoriLi/Steller/issues) or reach out directly to the maintainer at **[li_zhuxia@gibh.ac.cn]**.
 
 ```
 
