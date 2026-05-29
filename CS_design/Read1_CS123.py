@@ -16,7 +16,7 @@ from Bio.SeqRecord import SeqRecord
 import glob
 
 indir = sys.argv[1] #"~/NPC_project/BMK/cs_design/240122_batch2/read1-cs123/amplicon/highBC"
-input = os.path.join(indir,"fastq/Unknown_YF-1-240112-BD-0115_good_1.fq.gz")
+input = os.path.join(indir,"fastq/Unknown_YF-1-240112-BD-0115_good_10000_1.fq.gz")
 outdir = os.path.join(indir,"split_fastq")
 ft1 = os.path.join(outdir,"cs1")
 ft2 = os.path.join(outdir,"cs2")
