@@ -81,8 +81,17 @@ Firstly, we designed three types of CS probes for CloneBC targeted capture. Base
 
 ```bash
 python CS_design/Read1_CS123.py \
-    CS_design/fastq #the directory path of test fastq data
+    CS_design/CS123/fastq #the directory path of test CS123 fastq data
 ```
+You will see cs1, cs2, cs3 and other diresctory generated under the "CS_design/CS123/split_fastq" directory. There are readnames enriched by each probes (other means undetermined reads).
+
+Next, we modified CS3 probe on conventional polyT spatial beads, resulting about polyT:CS3 = 1:1. Based on bulk amplicon dataset, we can further compare whether CS3 probes show better performance than polyT on CloneBC transcripts enrichment from transfected 4T1 total RNA.
+
+```bash
+python CS_design/polyT_CS3.py \
+    CS_design/CS3_PT/fastq #the directory path of test CS123 fastq data
+```
+You will see polyT, cs3 and other diresctory generated under the "CS_design/CS3_PT/split_fastq" directory. There are readnames enriched by each probes.
 
 ### Preprocessing and Lineage Barcoding
 
