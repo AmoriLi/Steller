@@ -67,11 +67,24 @@ R -e "library(Seurat); packageVersion('Seurat')"
 Steller processes spatial lineages in three sequential modules:
 
 ```
-[ 1. CS probe selection ] ---> ( 2. CloneBC whitelist generation ) ---> ( 3. Brain region definition ) ---> ( 4. CloneBC extraction & CloneCalling ) ---> ( 5. Cell type annotation ) ---> ( 6. Spatial lineage fate analysis & visualization )
+[ 1. CS probe selection ] --->
+( 2. CloneBC whitelist generation ) --->
+( 3. Brain region definition ) --->
+( 4. CloneBC extraction & CloneCalling ) --->
+( 5. Cell type annotation ) --->
+( 6. Spatial lineage fate analysis & visualization )
 
 ```
+### 1. CS probe selection
 
-### 1. Preprocessing and Lineage Barcoding
+Firstly, we designed three types of CS probes for CloneBC targeted capture. Based on bulk amplicon dataset, we can identify which probe has the highest capture efficiency for CloneBC transcripts from transfected 4T1 total RNA.
+
+```bash
+python CS_design/Read1_CS123.py \
+    CS_design/fastq #the directory path of test fastq data
+```
+
+### Preprocessing and Lineage Barcoding
 
 Extract and filter high-quality spatial transcriptomic spots/cells alongside valid lineage tracer barcodes.
 
