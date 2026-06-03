@@ -97,8 +97,14 @@ New PE fastq.gz are generated in cs1/cs2/cs3/other directories.
 Finally, we need to determine the gene identity of each read sequence by running STAR mapping based on manual customized genome reference with mCherry-CloneBC information, which can be created via 'STAR_generate_index_v2.sh'.
 
 ```bash
-python CS_design/3_mapping.sh \
+sbatch STAR_generate_index_v2.sh \
+    $(path of downloaded mouse_gencode_vM23) \
+    $(new output directory of customized genome)
+
+sbatch -a 0-3 \
+    CS_design/3_mapping.sh \
     CS_design/CS123 #the directory path of test CS123
+    $(path of customized genome reference) #star/mouse/P045_genocode_vM23/P045_mcherry_BC
 ```
 Each probe's directory will contain a 'STAR' result, we can quantify and compare the read type and gene type captured by different probes.
 
@@ -125,6 +131,10 @@ sbatch -a 0-2 \
     CS_design/CS3_PT
 
 
+sbatch -a 0-2 \
+    CS_design/3_mapping.sh \
+    CS_design/CS3_PT \
+    $(path of customized genome reference) 
 ```
 You will see polyT, cs3 and other diresctory generated under the "CS_design/CS3_PT/split_fastq" directory. There are readnames enriched by each probes.
 
