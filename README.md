@@ -136,7 +136,16 @@ sbatch -a 0-2 \
     CS_design/CS3_PT \
     $(path of customized genome reference) 
 ```
-You will see polyT, cs3 and other diresctory generated under the "CS_design/CS3_PT/split_fastq" directory. There are readnames enriched by each probes.
+
+We can confirm the probe type of top read sequences by running '2_2_read_summary_top50.sh', to check the details base composition adjacent polyT.
+```bash
+sbatch -a 0-2 CS_design/2_2_read_summary_top50.sh \
+    CS_design/CS3_PT
+```
+We can see the differences between read end sequence captured by CS3 and conventional polyT probes, where CS3-captured-read started with "TCA".
+<img width="461" height="153" alt="Screenshot 2026-06-03 at 15 40 04" src="https://github.com/user-attachments/assets/c0ee4875-c9e0-4205-b117-5bcfeaba4d93" />
+<img width="457" height="156" alt="Screenshot 2026-06-03 at 15 39 51" src="https://github.com/user-attachments/assets/c27f9910-3822-4469-8b1a-df135188439c" />
+
 
 ### Preprocessing and Lineage Barcoding
 
