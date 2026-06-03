@@ -88,7 +88,8 @@ You will see cs1, cs2, cs3 and other diresctory generated under the "CS_design/C
 
 Then split original PE fastq file into subfiles of each probes.
 ```bash
-sbatch CS_design/2_splitfastq.sh \
+sbatch -a 0-3 \ #specify slurm array range for running multiple tasks
+    CS_design/2_splitfastq.sh \
     CS_design/CS123 #the directory path of test CS123
 ```
 New PE fastq.gz are generated in cs1/cs2/cs3/other directories.
@@ -108,10 +109,22 @@ Next, we modified CS3 probe on conventional polyT spatial beads, resulting about
 In order to identify the read type accurately, run fastp first for removing fuzzy reads which may be incorrectly assigned into polyT captured type due to very closed and similar 5'-end pattern of read1 sequence between polyT and CS3
 <img width="704" height="121" alt="Screenshot 2026-06-03 at 10 43 18" src="https://github.com/user-attachments/assets/5a518153-8ed3-4222-b4e7-a01d85e35263" />
 
-
 ```bash
-python CS_design/polyT_CS3.py \
-    CS_design/CS3_PT/fastq #the directory path of test CS123 fastq data
+sbatch CS_design/0_fastp_v2.sh \
+    CS_design/CS3_PT #the directory path of test CS3_polyT fastq data
+```
+'CS_design/CS3_PT/fastp' directory was added, which contains read sequence with base quanlity > Q25 and length > 140.
+
+Followed by read type and gene type detection
+```bash
+python CS_design/1_extract_readname_v3.py \
+    CS_design/CS3_PT
+
+sbatch -a 0-2 \
+    CS_design/2_splitfastq.sh \
+    CS_design/CS3_PT
+
+
 ```
 You will see polyT, cs3 and other diresctory generated under the "CS_design/CS3_PT/split_fastq" directory. There are readnames enriched by each probes.
 
