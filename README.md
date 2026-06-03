@@ -1,3 +1,4 @@
+<img width="532" height="130" alt="Screenshot 2026-06-03 at 15 44 29" src="https://github.com/user-attachments/assets/b33f5202-1262-444d-b973-6fe206106c4f" />
 **Steller** a platform utilizing high-diversity barcodes at sparse tagging densities to guarantee unique clonal identification. By integrating a specialized, probe-modified spatial transcriptomic workflow, Steller enhances lineage signature readout at single cell resolution without compromising transcriptomic analysis.
 
 ---
@@ -149,6 +150,7 @@ We can see the differences between read end sequence captured by CS3 and convent
 
 <img width="457" height="156" alt="Screenshot 2026-06-03 at 15 39 51" src="https://github.com/user-attachments/assets/c27f9910-3822-4469-8b1a-df135188439c" />
 
+<img width="532" height="130" alt="Screenshot 2026-06-03 at 15 44 29" src="https://github.com/user-attachments/assets/82df3529-291d-4fa2-a2ad-5d4506127b36" />
 
 ### Preprocessing and Lineage Barcoding
 
