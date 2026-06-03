@@ -1,4 +1,5 @@
-<img width="532" height="130" alt="Screenshot 2026-06-03 at 15 44 29" src="https://github.com/user-attachments/assets/b33f5202-1262-444d-b973-6fe206106c4f" />
+<img width="505" height="136" alt="Screenshot 2026-06-03 at 17 35 10" src="https://github.com/user-attachments/assets/3f49d693-f9d7-4345-8194-2df341e88d08" />
+
 **Steller** a platform utilizing high-diversity barcodes at sparse tagging densities to guarantee unique clonal identification. By integrating a specialized, probe-modified spatial transcriptomic workflow, Steller enhances lineage signature readout at single cell resolution without compromising transcriptomic analysis.
 
 ---
