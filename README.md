@@ -105,6 +105,10 @@ Each probe's directory will contain a 'STAR' result, we can quantify and compare
 #### 1b. CS3 probe quality control
 Next, we modified CS3 probe on conventional polyT spatial beads, resulting about polyT:CS3 = 1:1. Based on bulk amplicon dataset, we can further compare whether CS3 probes show better performance than polyT on CloneBC transcripts enrichment from transfected 4T1 total RNA.
 
+In order to identify the read type accurately, run fastp first for removing fuzzy reads which may be incorrectly assigned into polyT captured type due to very closed and similar 5'-end pattern of read1 sequence between polyT and CS3
+<img width="704" height="121" alt="Screenshot 2026-06-03 at 10 43 18" src="https://github.com/user-attachments/assets/5a518153-8ed3-4222-b4e7-a01d85e35263" />
+
+
 ```bash
 python CS_design/polyT_CS3.py \
     CS_design/CS3_PT/fastq #the directory path of test CS123 fastq data
