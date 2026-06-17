@@ -71,15 +71,15 @@ Steller processes spatial lineages in three sequential modules:
 ```
 [ 1. CS probe selection ] --->
 ( 2. CloneBC whitelist generation ) --->
-( 3. Brain region definition ) --->
+( 3. Clustering and brain region definition ) --->
 ( 4. CloneBC extraction & CloneCalling ) --->
 ( 5. Cell type annotation ) --->
 ( 6. Spatial lineage fate analysis & visualization )
 
 ```
-### 1. CS probe selection
+## 1. CS probe selection
 
-#### 1a. CS probe selection
+### 1a. CS probe selection
 Firstly, we designed three types of CS probes for CloneBC targeted capture. Based on bulk amplicon dataset, we can identify which probe has the highest capture efficiency for CloneBC transcripts from transfected 4T1 total RNA.
 
 ```bash
@@ -153,25 +153,83 @@ We can see the differences between read end sequence captured by CS3 and convent
 
 <img width="532" height="130" alt="Screenshot 2026-06-03 at 15 44 29" src="https://github.com/user-attachments/assets/82df3529-291d-4fa2-a2ad-5d4506127b36" />
 
-### Preprocessing and Lineage Barcoding
+## 2. CloneBC whitelist generation
 
-Extract and filter high-quality spatial transcriptomic spots/cells alongside valid lineage tracer barcodes.
+Extract and generate valid CloneBC whitelist.
 
 ```bash
-python scripts/preprocess.py \
-    --input_matrix data/spatial_counts.h5ad \
-    --lineage_barcodes data/clone_bcs.csv \
-    --out_dir results/preprocessed/
+#Concatenate pair read1 and read2 into complete sequence
+sbatch whitelist/0_PE_merge_fastqc.sh \
+    whitelist \ #working directory
+##whitelist/fastp created
+
+#split indexed-sampling CloneBC reads for saturation estimate
+python whitelist/1_fastq_index_split.py \
+    whitelist \ #work directory
+    whitelist/fastp/merged.fastq #input data
+##AA/AB/BA/BB indexed CloneBC reads were recognized into table files.
+
+#Merge all CloneBC reads from different samplings, remove noise and collapse similar CloneBC interactively (recommend run this step manually!)
+python 2_mergeRead_correction.py \
+    whitelist
 
 ```
 
-### 2. Spatio-Transcriptomic Integration
+## 3. Clustering and brain region definition
+
+Compare clustering result between ctrl and CS3 chips based on segmentation-level transcriptome.
+
+```bash
+#Run BMKMANU pipeline to get multi-bin-level and segmented expression matrix
+sbatch scST/0_BSTMatrix.sh \
+    scST \ #working directory
+    [genome reference dir] 
+
+#Preprocess, integrate and clustering spatial segmented transcriptomics of ctrl and CS3 group
+Rscript scST/1_clustering.r \
+    scST  #work directory
+```
+
+Define brain regions based on bin-level transcriptome.
+```bash
+#Run BMKMANU pipeline to get multi-bin-level and segmented expression matrix
+Rscript scST/2_1_L9_object_create.r  ##create integrated level9 bined expression matrix
+Rscript scST/2_2_brain_region.r ##Clustering and assign region annotation according to regional markers, spatial structures and alignment to pulished reference brain atlas "https://kimlab.io/brain-map/epDevAtlas/"
+```
+
+
+### 4. CloneBC extraction & CloneCalling
+
+Generate clean, informative plots with distinct color assignments across complex clonal architectures.
+
+```bash
+
+```
+
+## 5. Cell type annotation
 
 Map clonal lineages onto the spatial coordinates and low-dimensional embeddings (UMAP/t-SNE) to measure clone distribution entropy and fate directions.
 
 ### 3. Publication-Quality Visualization
 
 Generate clean, informative plots with distinct color assignments across complex clonal architectures.
+
+```python
+from src.visualization import plot_spatial_clones
+
+# Example usage within a python pipeline
+plot_spatial_clones(
+    adata, 
+    clone_column='assigned_clone', 
+    palette='morandi_53', 
+    save_path='figures/fig1_spatial_mapping.pdf'
+)
+
+```
+
+## 6. Spatial lineage fate analysis & visualization
+
+Map clonal lineages onto the spatial coordinates and low-dimensional embeddings (UMAP/t-SNE) to measure clone distribution entropy and fate directions.
 
 ```python
 from src.visualization import plot_spatial_clones
