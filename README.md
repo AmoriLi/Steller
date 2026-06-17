@@ -199,17 +199,26 @@ Rscript scST/RNA/2_2_brain_region.r ##Clustering and assign region annotation ac
 Generate cell-segmented, clean and confident CloneBC-cell matrix.
 
 ```bash
-sbatch scST/Amplicon/0_BSTMatrix.sh 
+#get spot-level matrix
+sbatch scST/Amplicon/0_BSTMatrix.sh \
+    scST/Amplicon
+
+#map to cell-segmentation level CloneBC matrix
+sbatch 1_get_mtx_by_precellresult.sh \
+    scST/Amplicon
+
+#CloneBC-Cell read/umi cutoff and confident filtering (recommend run this step manually)
+sbatch 2_preprocess.sh \
+    scST/Amplicon \
+    T #if test data
+#filter by whitelist (recommend run this step manually)
+python 3_confident_CloneBC_Cell.py 
 
 ```
 
 ## 5. Cell type annotation
 
 Map clonal lineages onto the spatial coordinates and low-dimensional embeddings (UMAP/t-SNE) to measure clone distribution entropy and fate directions.
-
-### 3. Publication-Quality Visualization
-
-Generate clean, informative plots with distinct color assignments across complex clonal architectures.
 
 ```python
 from src.visualization import plot_spatial_clones
