@@ -23,9 +23,6 @@ Steller/
 ├── scST/                  # Spatial transcriptomics with cell segmentation based on BMKMANU slide
 ├── snST/                  # Single nucleus spatial transcriptomics based on SeekSpace slide
 ├── whitelist/             # Whitelist of CloneBC plasmid library used in the study
-│   ├── preprocessing/     # Data filtering, QC, and lineage barcode extraction
-│   ├── integration/       # Alignment algorithms for transcriptomics and clones
-│   └── visualization/     # Custom plotting engines for spatial & UMAP plots
 ├── Helper.R               # Source code using R
 ├── utils.py               # Source code using python
 └── README.md
@@ -181,28 +178,28 @@ Compare clustering result between ctrl and CS3 chips based on segmentation-level
 
 ```bash
 #Run BMKMANU pipeline to get multi-bin-level and segmented expression matrix
-sbatch scST/0_BSTMatrix.sh \
-    scST \ #working directory
+sbatch scST/RNA/0_BSTMatrix.sh \
+    scST/RNA \ #working directory
     [genome reference dir] 
 
 #Preprocess, integrate and clustering spatial segmented transcriptomics of ctrl and CS3 group
-Rscript scST/1_clustering.r \
-    scST  #work directory
+Rscript scST/RNA/1_clustering.r \
+    scST/RNA  #work directory
 ```
 
 Define brain regions based on bin-level transcriptome.
 ```bash
 #Run BMKMANU pipeline to get multi-bin-level and segmented expression matrix
-Rscript scST/2_1_L9_object_create.r  ##create integrated level9 bined expression matrix
-Rscript scST/2_2_brain_region.r ##Clustering and assign region annotation according to regional markers, spatial structures and alignment to pulished reference brain atlas "https://kimlab.io/brain-map/epDevAtlas/"
+Rscript scST/RNA/2_1_L9_object_create.r  ##create integrated level9 bined expression matrix
+Rscript scST/RNA/2_2_brain_region.r ##Clustering and assign region annotation according to regional markers, spatial structures and alignment to pulished reference brain atlas "https://kimlab.io/brain-map/epDevAtlas/"
 ```
-
 
 ### 4. CloneBC extraction & CloneCalling
 
-Generate clean, informative plots with distinct color assignments across complex clonal architectures.
+Generate cell-segmented, clean and confident CloneBC-cell matrix.
 
 ```bash
+sbatch scST/Amplicon/0_BSTMatrix.sh 
 
 ```
 
