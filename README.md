@@ -50,12 +50,8 @@ git clone [https://github.com/AmoriLi/Steller.git](https://github.com/AmoriLi/St
 cd Steller
 
 # Create and activate the conda environment
-conda env create -f envs/steller_env.yml
-conda activate steller
-
-# (Optional) Verify your R/Python path configurations
-python -c "import scanpy; print(scanpy.__version__)"
-R -e "library(Seurat); packageVersion('Seurat')"
+#conda env create -f envs/steller_env.yml
+#conda activate steller
 
 ```
 
@@ -194,7 +190,7 @@ Rscript scST/RNA/2_1_L9_object_create.r  ##create integrated level9 bined expres
 Rscript scST/RNA/2_2_brain_region.r ##Clustering and assign region annotation according to regional markers, spatial structures and alignment to pulished reference brain atlas "https://kimlab.io/brain-map/epDevAtlas/"
 ```
 
-### 4. CloneBC extraction & CloneCalling
+## 4. CloneBC extraction & CloneCalling
 
 Generate cell-segmented, clean and confident CloneBC-cell matrix.
 
@@ -212,55 +208,45 @@ sbatch 2_preprocess.sh \
     scST/Amplicon \
     T #if test data
 #filter by whitelist (recommend run this step manually)
-python 3_confident_CloneBC_Cell.py 
+python 3_confident_CloneBC_Cell.py
+
+###CloneBC+ cells perform clonecalling to link clonal sisters
+Rscript scST/Merged/1_CloneBC_RNA_merge.r
 
 ```
 
 ## 5. Cell type annotation
 
-Map clonal lineages onto the spatial coordinates and low-dimensional embeddings (UMAP/t-SNE) to measure clone distribution entropy and fate directions.
+Integrate scST CloneBC+ cells with correlated single-nucleus spatial transcriptomics (snST), previous published single-cell transcriptome for better cell type annotation.
 
-```python
-from src.visualization import plot_spatial_clones
+```bash
+##Preprocess snST datasets from Seekspace
+sbatch snST/0_SeekSpace.sh \
+    snST/section1 \ #directory
+    s1 #sample name
 
-# Example usage within a python pipeline
-plot_spatial_clones(
-    adata, 
-    clone_column='assigned_clone', 
-    palette='morandi_53', 
-    save_path='figures/fig1_spatial_mapping.pdf'
-)
+Rscript snST/1_clustering.r #run this step manually
+
+###Cell type annotation based on canonical markers and spatial distribution
+Rscript scST/RNA/3_celltype.r
 
 ```
 
 ## 6. Spatial lineage fate analysis & visualization
 
-Map clonal lineages onto the spatial coordinates and low-dimensional embeddings (UMAP/t-SNE) to measure clone distribution entropy and fate directions.
+Map clonal lineages onto the spatial coordinates and low-dimensional embeddings (UMAP/t-SNE) to measure clone distribution and fate relationships.
 
-```python
-from src.visualization import plot_spatial_clones
+```bash
+##Spatial distance and fate correlation between clonal sister cells
+python scST/Merged/2_space_fate_distance.py
 
-# Example usage within a python pipeline
-plot_spatial_clones(
-    adata, 
-    clone_column='assigned_clone', 
-    palette='morandi_53', 
-    save_path='figures/fig1_spatial_mapping.pdf'
-)
+###Spatial orientation between clonal cells
+Rscript 2_spatial_orientation.r
+
+###Regional spatial lineage fate
+Rscript 2_spatial_fate_distance.r
 
 ```
-
----
-
-## Tutorials and Demos
-
-Check out the interactive guides in the `notebooks/` directory for full examples from start to finish:
-
-* `01_data_alignment.ipynb`: Reading spatial datasets and overlaying lineage metadata.
-* `02_clonality_analysis.ipynb`: Quantifying lineage dynamics in the developing mouse brain.
-* `03_advanced_visualization.Rmd`: Generating high-impact figures with custom color palettes.
-
----
 
 ## Citation
 
@@ -270,15 +256,5 @@ If you use **Steller** in your research or find its workflows helpful, please ci
 
 ## Contact & Support
 
-For questions, bug reports, or feature requests, please open an Issue on the [GitHub Issues page](https://www.google.com/search?q=https://github.com/AmoriLi/Steller/issues) or reach out directly to the maintainer at **[li_zhuxia@gibh.ac.cn]**.
+For questions, bug reports, or feature requests, please open an Issue on the [GitHub Issues page](https://www.google.com/search?q=https://github.com/AmoriLi/Steller/issues) or reach out directly to the corresponding author at **[peng_guangdun@gibh.ac.cn]**.
 
-```
-
-***
-
-### Recommendations for Customizing This File:
-1. **`envs/steller_env.yml`**: Ensure you place a valid environment file inside an `envs` directory so users can recreate your package setup exactly as it runs on your server.
-2. **Morandi Palette**: Under Key Features and Visualization, I explicitly highlighted your sophisticated color palettes—this is a valuable selling point for bioinformaticians who struggle to visualize dozens of clones cleanly in one plot.
-3. **Citation**: Update the BibTeX stub with your target journal or BioRxiv details once available.
-
-```
