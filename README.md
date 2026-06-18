@@ -46,8 +46,8 @@ We recommend using Conda to manage your environments and prevent dependency vers
 
 ```bash
 # Clone the repository
-git clone [https://github.com/AmoriLi/Steller.git](https://github.com/AmoriLi/Steller.git)
-cd Steller
+#git clone [https://github.com/AmoriLi/Steller.git](https://github.com/AmoriLi/Steller.git)
+#cd Steller
 
 # Create and activate the conda environment
 #conda env create -f envs/steller_env.yml
@@ -158,13 +158,13 @@ sbatch whitelist/0_PE_merge_fastqc.sh \
 
 #split indexed-sampling CloneBC reads for saturation estimate
 python whitelist/1_fastq_index_split.py \
-    whitelist \ #work directory
-    whitelist/fastp/merged.fastq #input data
+    whitelist #work directory
+    #whitelist/fastp/merged.fastq #input data
 ##AA/AB/BA/BB indexed CloneBC reads were recognized into table files.
 
 #Merge all CloneBC reads from different samplings, remove noise and collapse similar CloneBC interactively (recommend run this step manually!)
 python 2_mergeRead_correction.py \
-    whitelist
+    whitelist/CloneBC
 
 ```
 
