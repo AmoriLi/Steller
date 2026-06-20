@@ -59,7 +59,7 @@ We recommend using Conda to manage your environments and prevent dependency vers
 
 ## Standard Workflow
 
-Steller processes spatial lineages in three sequential modules:
+Steller processes spatial lineages in six sequential modules:
 
 ```
 [ 1. CS probe selection ] --->
