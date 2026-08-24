@@ -65,13 +65,13 @@ for(i in 1:length(slices)){
 
     cmd = paste0("cp ",image," ",paste0(tmpdir,"/tissue_lowres_image.png"))
     system(cmd)
-    ##读取表达矩阵
+    ##read expression matrix
     data <- Read10X(data.dir = mtx)
-    ##创建对象
+    ##create seurat object
     object <- CreateSeuratObject(counts = data,min.cells = 0,min.features = 0,assay = "Spatial")
-    ##读取图像
+    ##load image
     image <- Read10X_Image(image.dir = tmpdir,image.name = "tissue_lowres_image.png")
-    ##设置图像缺省Assay为Spatial,保持和表达矩阵一致
+    ##assign spatial assay for image
     DefaultAssay(image) <-"Spatial"
     object[[slices[i]]] <- image
 
