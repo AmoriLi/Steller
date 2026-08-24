@@ -24,8 +24,8 @@ library(VennDiagram)
 library(colorspace)
 library(plotly)
 library(igraph)
-#source("~/NPC_project/BMK/pipeline/amplicon/function.R")
-#source("~/NPC_project/BMK/pipeline/spatial_plot.r")
+source("~/NPC_project/BMK/pipeline/amplicon/function.R")
+source("~/NPC_project/BMK/pipeline/spatial_plot.r")
 source("~/NPC_project/BMK/pipeline/RNA/Helper.R")
 exp_col<-c('#034f84','#92a8d1','#d6d4e0','#f4a688',"#ED797B","#d64161","#c94c4c")
 
@@ -185,7 +185,7 @@ writeMM(sparse.gbm.T,file=file.path(wkdir,"clonebc.cell.matrix.mtx"))
 write.table(rownames(da),file=file.path(wkdir,"clonebc.tsv"),row.names = FALSE, col.names = FALSE, quote = FALSE)
 write.table(da@meta.data,file=file.path(wkdir,"cloenbc_cell.meta.tsv"),sep='\t')
 
-### After run clonecalling.py
+###Run in shell: python clonecalling.py $(wkdir)
 clones<-read.csv(file.path(wkdir,"tmp/clones.csv"),header = TRUE)
 rownames(clones)<-clones$cell
 colnames(clones)<-c('clone.id','cell.barcode','edge.den')
